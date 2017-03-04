@@ -1,0 +1,45 @@
+<view class="navbar">  
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>  
+</view>   
+<!--热门-->  
+<view hidden="{{currentTab!==0}}">
+  <view wx:for="{{musicitem.hot}}" data-idx="{{item.id}}" class='musci_item' bindtap="choosemusic">
+   <icon type='circle' color="orange" size="14"></icon>
+   <text>{{item.music}}</text>
+ </view>
+</view>  
+<!--流行-->  
+<view hidden="{{currentTab!==1}}">
+  <view wx:for="{{musicitem.fashion}}" data-idx="{{item.id}}" class='musci_item' bindtap="choosemusic">
+   <icon type='circle' color="orange" size="14"></icon>
+   <text>{{item.music}}</text>
+ </view>
+</view>   
+<!--网络-->  
+<view hidden="{{currentTab!==2}}">  
+  <view wx:for="{{musicitem.online}}" data-idx="{{item.id}}" class='musci_item' bindtap="choosemusic">
+   <icon type='circle' color="orange" size="14"></icon>
+   <text>{{item.music}}</text>
+ </view> 
+</view>  
+<!--怀旧-->  
+<view hidden="{{currentTab!==3}}">  
+  <view wx:for="{{musicitem.old}}" data-idx="{{item.id}}" class='musci_item' bindtap="choosemusic">
+   <icon type='circle' color="orange" size="14"></icon>
+   <text>{{item.music}}</text>
+ </view>
+</view>  
+<!--童真-->  
+<view hidden="{{currentTab!==4}}">  
+  <view wx:for="{{musicitem.child}}" data-idx="{{item.id}}" class='musci_item' bindtap="choosemusic">
+   <icon type='circle' color="orange" size="14"></icon>
+   <text>{{item.music}}</text>
+ </view> 
+</view>  
+<!--纯音乐-->  
+<view hidden="{{currentTab!==5}}">  
+  <view wx:for="{{musicitem.simple}}" data-idx="{{item.id}}" class='musci_item' bindtap="choosemusic">
+   <icon type='circle' color="orange" size="14"></icon>
+   <text>{{item.music}}</text>
+ </view>
+</view>  

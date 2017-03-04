@@ -1,0 +1,50 @@
+/**index.wxss**/
+.rabit{
+  width: 150px;
+  height: 250px;
+}
+.rabit_box{
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+}
+.bling_do{
+  position: absolute;
+}
+.lover{
+  width: 32px;
+  height: 32px;
+  z-index: 1
+}
+.musi{
+  width: 30px;
+  height: 25px;
+}
+.photo_box{
+  width:488rpx;
+  height:867rpx;
+  z-index: 2;
+}
+.photo_box image{
+  width: 488rpx;height: 867rpx;
+}
+.app_bottom{
+  color: #fff;
+  position: absolute;
+  bottom: 60rpx;
+  left: 100rpx;
+}
+.app_bottom button{
+  opacity:0.8;
+  color: #fff;
+  text-align: center;
+  background-color:#000;
+  border-radius:10rpx;
+  display: inline-block;
+  font-size:14px;
+  line-height: 25px;
+  height: 25px;
+  padding: 0 10px;
+  margin: 0 5px;
+  font-weight: 300;
+}
