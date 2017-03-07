@@ -19,14 +19,6 @@
   animation-fill-mode: both;
 }
 
-.animated.flipOutX,
-.animated.flipOutY,
-.animated.bounceIn,
-.animated.bounceOut {
-  -webkit-animation-duration: .75s;
-  animation-duration: .75s;
-}
-
 @keyframes swing {
   20% {
     -webkit-transform: rotate3d(0, 0, 1, 15deg);
@@ -55,64 +47,54 @@
 }
 
 .swing {
-  -webkit-transform-origin: bottom center;
   transform-origin: bottom center;
-  -webkit-animation-name: swing;
   animation-name: swing;
-  animation-duration: 7s;
+  animation-duration: 8s;
   animation-iteration-count: infinite;
 }
 
 @keyframes zoom {
   from {
     opacity: 0;
-    -webkit-transform: scale3d(.1, .1, .1);
     transform: scale3d(.1, .1, .1);
   }
 
   25% {
     opacity: 0.8;
-    -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
   50% {
     opacity: 1;
-    -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
   75% {
     opacity: 0.8;
-    -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
   to {
     opacity: 0;
-    -webkit-transform: scale3d(.1, .1, .1);
     transform: scale3d(.1, .1, .1);
   }
 }
 
 .zoom {
-  animation: zoom 4s infinite;
-}
-.zoom6 {
   animation: zoom 6s infinite;
 }
 
 @keyframes rotation {
   0% {
-    -webkit-transform: rotateZ(0deg);
     transform: rotateZ(0deg);
   }
+  70% {
+    transform: rotateZ(360deg);
+  }
   100% {
-    -webkit-transform: rotateZ(360deg);
     transform: rotateZ(360deg);
   }
 }
 .rotation {
   animation: rotation 6s infinite;
   -moz-animation: rotation 6s infinite;
-  -webkit-animation:rotation 6s infinite;
 }
 
 @keyframes fadeOutUp {
@@ -122,12 +104,26 @@
 
     100% {
         opacity: 0;
-        -webkit-transform: translate3d(0,-1500rpx,0);
-        transform: translate3d(0,-1500rpx,0)
+        transform: translate3d(0,-1500rpx,0) rotate(480deg)
     }
 }
 .fadeOutUp {
     animation-name: fadeOutUp;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+@keyframes fadeOutleans {
+    0% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate3d(0,-1500rpx,0) rotate(480deg)
+    }
+}
+.fadeOutleans {
+    animation-name: fadeOutleans;
     animation-duration: 6s;
     animation-iteration-count: infinite;
 }
@@ -147,44 +143,32 @@
 }
 @keyframes flip {
     0% {
-        -webkit-transform: perspective(400px) rotate3d(0,1,0,-360deg);
         transform: perspective(400px) rotate3d(0,1,0,-360deg);
-        -webkit-animation-timing-function: ease-out;
         animation-timing-function: ease-out
     }
 
     40% {
-        -webkit-transform: perspective(400px) translate3d(0,0,150px) rotate3d(0,1,0,-190deg);
         transform: perspective(400px) translate3d(0,0,150px) rotate3d(0,1,0,-190deg);
-        -webkit-animation-timing-function: ease-out;
         animation-timing-function: ease-out
     }
 
     50% {
-        -webkit-transform: perspective(400px) translate3d(0,0,150px) rotate3d(0,1,0,-170deg);
         transform: perspective(400px) translate3d(0,0,150px) rotate3d(0,1,0,-170deg);
-        -webkit-animation-timing-function: ease-in;
         animation-timing-function: ease-in
     }
 
     80% {
-        -webkit-transform: perspective(400px) scale3d(.95,.95,.95);
         transform: perspective(400px) scale3d(.95,.95,.95);
-        -webkit-animation-timing-function: ease-in;
         animation-timing-function: ease-in
     }
 
     100% {
-        -webkit-transform: perspective(400px);
         transform: perspective(400px);
-        -webkit-animation-timing-function: ease-in;
         animation-timing-function: ease-in
     }
 }
 .flip {
-    -webkit-backface-visibility: visible;
     backface-visibility: visible;
-    -webkit-animation-name: flip;
     animation-name: flip;
      animation-duration: 6s;
     animation-iteration-count: infinite;
@@ -226,6 +210,10 @@
     0% {transform-origin: left bottom;
         transform: rotate3d(0,0,1,-45deg);
         opacity: 0}
+    70% { transform-origin: left bottom;
+        -webkit-transform: none;
+        transform: none;
+        opacity: 1 }    
     100% { transform-origin: left bottom;
         -webkit-transform: none;
         transform: none;

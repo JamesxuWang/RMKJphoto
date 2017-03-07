@@ -1,10 +1,12 @@
-//flip/flipX/flipY翻转 fadeOutUp/fadeOutDown 
+//flip/flipInX/flipInY翻转//rotation/zoom//rotateInDownLeft//  slideIn//slide弹性上下（相框）
+//fadeOutUp/fadeOutDown上移 下移 (小动画)
+//swing (大动画)
 //index.js 
 //获取应用实例
+var playon=false
 var app = getApp()
 Page({
   data: {
-    random:Math.floor(Math.random()),
     name:'rabit',
     //music  AND  background AND rabit_box
     rabit:{
@@ -26,12 +28,17 @@ Page({
       lover_src:'../../images/3.png'
     },
     //如果是slide效果加'overflow: hidden;'
-    overflow:'width: 488rpx;height: 867rpx;margin: 140rpx auto;',
-    pbox_style:"border:20px solid #fff;border-image:url(../../images/1111.png) stretch 90;",
+    overflow:'width: 488rpx;height: 867rpx;margin: 100rpx 100rpx;',
+    //默认彩色相框配置2
+    pbox_style:"border:13px ridge #ffac46",
     //相框特效
+    // iframe:{
+    //   iframe_style1:'zoom',
+    //   iframe_style2:'rotation'
+    // },
     iframe:{
-      iframe_style1:'zoom',
-      iframe_style2:'rotation'
+      iframe_style1:'rotateInDownLeft',
+      iframe_style2:'flipInY'
     },
     //图片
     photo:[],
@@ -91,7 +98,7 @@ iframe_animate: function (animation_one,animation_twi, delay_onc,delay_twi) {
           photo_right:i 
           })
         console.log('iframesetInterval'+i);
-          (function(){
+          setTimeout(function(){
           that.setData({
           iframe:{
               iframe_style1:animation_twi,
@@ -151,7 +158,9 @@ onLoad: function () {
 onReady:function(e){
   },
 onHide:function(){
-    this.pausemusi();
+  if(this.playon = true){
+   this.pausemusi();
+   }
   },
 onShow:function(e){
     console.log(app.globalData.theme);
@@ -162,9 +171,9 @@ onShow:function(e){
       photo: app.globalData.photo_loca,
     })
     var rotation = this.data.iframe.iframe_style2;
-    var zoomIn = this.data.iframe.iframe_style1;
+    var zoom = this.data.iframe.iframe_style1;
     this.audioCtx = wx.createAudioContext('myAudio');
-    this.iframe_animate(zoomIn,rotation,6000, 12000);
+    this.iframe_animate(rotation,zoom,6000, 12000);
     this.pausemusi();
   }
 })

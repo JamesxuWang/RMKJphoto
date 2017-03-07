@@ -44,7 +44,7 @@
   font-size:14px;
   line-height: 25px;
   height: 25px;
-  padding: 0 10px;
-  margin: 0 5px;
+  padding: 0 20rpx;
+  margin: 0 10rpx;
   font-weight: 300;
 }
