@@ -1,6 +1,6 @@
 <view class ="app back">
     <view class="logo">
-    <image src="../../images/log.png" class='log'></image>
+    <image src="{{userInfo.avatarUrl||'../../images/log.png'}}" class='log'></image>
     </view>
     <view class="foundphoto">
         <button type="primary" bindtap="foundphoto">创建个人相册</button>

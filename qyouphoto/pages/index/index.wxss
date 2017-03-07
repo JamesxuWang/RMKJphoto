@@ -1,12 +1,11 @@
 /**index.wxss**/
-.rabit{
+/*.rabit{
   width: 150px;
   height: 250px;
-}
-.rabit_box{
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
+}*/
+.rabit{
+  width: 104px;
+  height: 158px;
 }
 .bling_do{
   position: absolute;

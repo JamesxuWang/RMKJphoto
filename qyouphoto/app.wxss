@@ -1,11 +1,11 @@
 .app{
   width:750rpx;
-  height:1200rpx;
+  height:1250rpx;
   display:inline-block;
   overflow:hidden;
 }
 .back{
-  background-size:750rpx 1200rpx;
+  background-size:750rpx 1250rpx;
 }
 .music_box{
   position: absolute;
@@ -49,6 +49,39 @@
 .swing {
   transform-origin: bottom center;
   animation-name: swing;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+}
+@keyframes swing1 {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 4deg);
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 2deg);
+    transform: rotate3d(0, 0, 1, 2deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -3deg);
+    transform: rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+.swing1 {
+  transform-origin: bottom right;
+  animation-name: swing1;
   animation-duration: 8s;
   animation-iteration-count: infinite;
 }
@@ -96,12 +129,31 @@
   animation: rotation 6s infinite;
   -moz-animation: rotation 6s infinite;
 }
-
+@keyframes fadeOutleansU {
+    0% {
+        opacity: 0;      
+    }
+    5% {
+        opacity: 0;
+        transform: translate3d(300rpx,0,0) 
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(-300rpx,-1500rpx,0) rotate(20deg)
+    }
+}
+.fadeOutleansU {
+    animation-name: fadeOutleansU;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+}
 @keyframes fadeOutUp {
     0% {
         opacity: 1
     }
-
     100% {
         opacity: 0;
         transform: translate3d(0,-1500rpx,0) rotate(480deg)
@@ -109,36 +161,39 @@
 }
 .fadeOutUp {
     animation-name: fadeOutUp;
-    animation-duration: 6s;
+    animation-duration: 12s;
     animation-iteration-count: infinite;
 }
-@keyframes fadeOutleans {
+@keyframes fadeOutleansD {
     0% {
-        opacity: 1
+        opacity: 1;      
     }
-
+    5% {
+        opacity: 1;
+        transform: translate3d(300rpx,0,0) rotate(90deg)    
+    }
     100% {
         opacity: 0;
-        transform: translate3d(0,-1500rpx,0) rotate(480deg)
+        transform: translate3d(-300rpx,1800rpx,0) rotate(480deg)
     }
 }
-.fadeOutleans {
-    animation-name: fadeOutleans;
-    animation-duration: 6s;
+.fadeOutleansD {
+    animation-name: fadeOutleansD;
+    animation-duration: 12s;
     animation-iteration-count: infinite;
 }
 @keyframes fadeOutDown {
     0% {
-        opacity: 1
+        opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: translate3d(0,1800rpx,0) rotate(480deg);
+        transform: translate3d(0,1000rpx,0) rotate(480deg) scale3d(0.5,0.5,0);
     }
 }
 .fadeOutDown {
     animation-name: fadeOutDown;
-    animation-duration: 6s;
+    animation-duration: 10s;
     animation-iteration-count: infinite;
 }
 @keyframes flip {

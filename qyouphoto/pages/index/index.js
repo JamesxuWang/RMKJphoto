@@ -1,5 +1,5 @@
 //flip/flipInX/flipInY翻转//rotation/zoom//rotateInDownLeft//  slideIn//slide弹性上下（相框）
-//fadeOutUp/fadeOutDown上移 下移 (小动画)
+//fadeOutUp/fadeOutDown/fadeOutleansU D上移 下移 (小动画)
 //swing (大动画)
 //index.js 
 //获取应用实例
@@ -11,26 +11,27 @@ Page({
     //music  AND  background AND rabit_box
     rabit:{
         src: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46'   ,
-      background_img:'background-image: url(../../images/1.png)',
+      background_img:'background-image: url(../../images/1.2.png)',
       //rabit_box:'../../images/rabit.png',
-      rabit_position:''
+      rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
+      rabit_box:'../../images/pinkfl.png'
        },
       //music旋转
     rotation:'animation-play-state: running',
-    //爱心特效
+    //爱心特效1是闪星 2是落叶 3是气球
     bling_box:2,
     bling:{
       love_style:'fadeOutDown',
-      lover_src:'../../images/2.png'
+      lover_src:'../../images/1.2.2.png'
     },
     bling2:{
       love_style:'fadeOutDown',
-      lover_src:'../../images/3.png'
+      lover_src:'../../images/1.2.2.png'
     },
     //如果是slide效果加'overflow: hidden;'
-    overflow:'width: 488rpx;height: 867rpx;margin: 100rpx 100rpx;',
-    //默认彩色相框配置2
-    pbox_style:"border:13px ridge #ffac46",
+    overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
+    //粉色相册相框配置
+    pbox_style:"border:17px solid #fff;border-image:url(../../images/pinkst.png) repeat 45;",
     //相框特效
     // iframe:{
     //   iframe_style1:'zoom',
