@@ -10,11 +10,11 @@ Page({
     theme:'',
     //music  AND  background AND rabit_box
     rabit:{
-        src: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
+        src: 'https://chaye.j8j0.com/data/upload/music/2017-03-10/58c278f835197.mp3',
       background_img:'background-image: url(../../images/1.2.png)',
       //rabit_box:'../../images/rabit.png',
       rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
-      rabit_box:'../../images/pinkfl.png'
+      rabit_box:'../../images/2.3.png'
        },
       //music旋转
     rotation:'animation-play-state: running',
@@ -22,11 +22,11 @@ Page({
     bling_box:1,
     bling:{
       love_style:'fadeOutDown',
-      lover_src:'../../images/1.2.2.png'
+      lover_src:'../../images/2.1.png'
     },
     bling2:{
       love_style:'fadeOutDown',
-      lover_src:'../../images/1.2.2.png'
+      lover_src:'../../images/2.1.png'
     },
     //如果是slide效果加'overflow: hidden;'
     overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
@@ -160,7 +160,6 @@ onHide:function(){
   },
 initiatlizate:function(){
   var that= this;
-  var components={};
   var theme = app.globalData.theme;
   var theme_old = this.data.theme;
     console.log(theme);
@@ -171,7 +170,8 @@ initiatlizate:function(){
           method:'POST',
           success: function(res){
             var data = res.data;
-            console.log(data)
+            console.log(data)           
+            var components={};
             for(var i=0,l=data.length;i<l;i++){
               if(data[i].type==1){
                 components.url = 'background-image: url('+data[i].img+')'; 
@@ -197,6 +197,7 @@ initiatlizate:function(){
                 components.photo = data[i].img; 
               }
             }
+            that.setcomponents(components)
           },
           fail: function(res){
             console.log('getmode fail');
@@ -204,42 +205,43 @@ initiatlizate:function(){
           complete: function(res){
           }
         },'https://chaye.j8j0.com/api/img/')  
+    }else{
+      return false;
     }
-    console.log(components);  //setData有问题
-    var data = {
-          theme:'7',
-          rabit:{
-            src: components.music,
-            background_img:components.url,
-            //rabit_box:'../../images/rabit.png',
-            rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
-            rabit_box:components.rabit_box
-            },
-          rotation:'animation-play-state: running',
-          bling_box:1,
-          bling:{
-            love_style:'zoom',
-            lover_src:components.bling
-          },
-          bling2:{
-            love_style:'zoom',
-            lover_src:components.bling2
-          },
-          //如果是slide效果加'overflow: hidden;'
-          overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
-          //白色邮票相框配置
-          pbox_style:components.pbox_style,
-          iframe:{
-            iframe_style1:'rotateInDownLeft',
-            iframe_style2:'flipInY'
-          },
-          //图片
-          photo:app.globalData.photo_line,
-          photo_right:0
-      }
-      that.setData({
-        data:data
-      })
+},
+setcomponents:function(e){
+  console.log(e)
+  this.setData({
+      theme:'7',
+      rabit:{
+        src: e.music,
+        background_img:e.url,
+        //rabit_box:'../../images/rabit.png',
+        rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
+        rabit_box:e.rabit_box
+        },
+      rotation:'animation-play-state: running',
+      bling_box:1,
+      bling:{
+        love_style:'zoom',
+        lover_src:e.bling
+      },
+      bling2:{
+        love_style:'zoom',
+        lover_src:e.bling2
+      },
+      //如果是slide效果加'overflow: hidden;'
+      overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
+      //白色邮票相框配置
+      pbox_style:e.pbox_style,
+      iframe:{
+        iframe_style1:'rotateInDownLeft',
+        iframe_style2:'flipInY'
+      },
+      //图片
+      photo:app.globalData.photo_loca,
+      photo_right:0
+   })
 },
 onShow:function(e){
     this.initiatlizate();    
