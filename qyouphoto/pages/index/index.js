@@ -205,45 +205,46 @@ initiatlizate:function(){
           }
         },'https://chaye.j8j0.com/api/img/')  
     }
-    console.log(components)
-    that.setData({
-        theme:'7',
-        rabit:{
-          src: components.music,
-          background_img:components.url,
-          //rabit_box:'../../images/rabit.png',
-          rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
-          rabit_box:components.rabit_box
+    console.log(components);  //setData有问题
+    var data = {
+          theme:'7',
+          rabit:{
+            src: components.music,
+            background_img:components.url,
+            //rabit_box:'../../images/rabit.png',
+            rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
+            rabit_box:components.rabit_box
+            },
+          rotation:'animation-play-state: running',
+          bling_box:1,
+          bling:{
+            love_style:'zoom',
+            lover_src:components.bling
           },
-        rotation:'animation-play-state: running',
-        bling_box:1,
-        bling:{
-          love_style:'zoom',
-          lover_src:components.bling
-        },
-        bling2:{
-          love_style:'zoom',
-          lover_src:components.bling2
-        },
-        //如果是slide效果加'overflow: hidden;'
-        overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
-        //白色邮票相框配置
-        pbox_style:components.pbox_style,
-        iframe:{
-          iframe_style1:'rotateInDownLeft',
-          iframe_style2:'flipInY'
-        },
-        //图片
-        photo:app.globalData.photo_line,
-        photo_right:0
-    })
+          bling2:{
+            love_style:'zoom',
+            lover_src:components.bling2
+          },
+          //如果是slide效果加'overflow: hidden;'
+          overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
+          //白色邮票相框配置
+          pbox_style:components.pbox_style,
+          iframe:{
+            iframe_style1:'rotateInDownLeft',
+            iframe_style2:'flipInY'
+          },
+          //图片
+          photo:app.globalData.photo_line,
+          photo_right:0
+      }
+      that.setData({
+        data:data
+      })
 },
 onShow:function(e){
-    console.log(app.globalData.music);
-    console.log(app.globalData.photo_loca);
     this.initiatlizate();    
     var rotation = this.data.iframe.iframe_style2;
-    var zoom = this.data.iframes.iframe_style1;
+    var zoom = this.data.iframe.iframe_style1;
     this.audioCtx = wx.createAudioContext('myAudio');
     this.iframe_animate(rotation,zoom,6000, 12000);
     this.pausemusi();
