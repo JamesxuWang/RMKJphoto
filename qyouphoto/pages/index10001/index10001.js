@@ -38,8 +38,9 @@ Page({
     if(photoadd.length!=0){
     for (var i = 0; i < photoadd.length; i++) {
       console.log(i)
+      var data = Date.now();
         wx.uploadFile({
-          formData: {'session_key':session_key,t_id:1},
+          formData: {'session_key':session_key,'add_img_time':data},
           url : 'https://chaye.j8j0.com/api/img/add_img',
           filePath: photoadd[i],
           name: 'file',
