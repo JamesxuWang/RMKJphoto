@@ -6,9 +6,11 @@ Page({
     ],
     photoadd:[]
   },
+  // chooseImage:function(){
+  //   return appInstance.chooseImage();
+  // },
   chooseImage:function(callback, count){
     var that = this;
-   // console.log(count);
     wx.chooseImage({
         count: 9,
         sizeType: ['original','compressed'], 
@@ -16,13 +18,11 @@ Page({
         success: function (res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths;
-          console.log(tempFilePaths);
          // that.photoadd.push(tempFilePaths);
          var photo = that.data.photoadd;
         for (var i = 0; i < tempFilePaths.length; i++) {
          photo.unshift(tempFilePaths[i]);
         }
-         console.log(photo);
          appInstance.globalData.photo_loca = photo;
           that.setData({
             photoadd:photo
@@ -30,40 +30,38 @@ Page({
         }
       })
   },
-  gonext:function(event){
+  gonext:function(){
+    var that = this;
     var photoadd = this.data.photoadd,
-        imageUrls = [];
-     console.log(appInstance.globalData.photo_loca+'10001');   
+        imageUrls = []; 
+    var session_key = appInstance.globalData.sessionKey;
     if(photoadd.length!=0){
-       wx.uploadFile({
-        url : appInstance.globalData.siteBaseUrl+ '/index.php?r=AppData/uploadImg',
-        filePath: photoadd,
-        name: 'img_data',
-        success: function(res){
-          var data = JSON.parse(res.data);
-          appInstance.globalData.photo_line = data;
-          if(data.status == 0){
-            imageUrls.push(data.data);
-        //typeof callback == 'function' && callback(imageUrls);
-              wx.navigateTo({
-                  url: '../index/index',
-                  success: function(res){}
-                })
-          } else {
-            that.showModal({
-              content: data.data
-            })
+    for (var i = 0; i < photoadd.length; i++) {
+      console.log(i)
+        wx.uploadFile({
+          formData: {'session_key':session_key,t_id:1},
+          url : 'https://chaye.j8j0.com/api/img/add_img',
+          filePath: photoadd[i],
+          name: 'file',
+          success: function(res){
+            var data1 = JSON.parse(res.data);
+            var data = data1.data;
+            console.log(data);
+            imageUrls.push(data.portrait);
+           console.log(imageUrls);    
+          },
+          fail: function(res){
+            console.log(res.errMsg);
           }
-        },
-        fail: function(res){
-          console.log(res);
-          wx.navigateTo({
-            url: '../index/index',
-            success: function(res){}
-          })
-        }
+        })
+      }
+    appInstance.globalData.photo_line = imageUrls;
+    console.log(appInstance.globalData.photo_line)
+     wx.navigateTo({
+        url: '../index/index',
+        success: function(res){}
       })
-   }else{
+    }else{
       wx.showModal({
         title: '提示',
         content: '请先选择图片',

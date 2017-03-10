@@ -14,25 +14,93 @@ Page({
     }
   },  
   navbarTap: function(e){
-    console.log(e)  
+    var id = e.currentTarget.dataset.idx;
+    var navbar = this.data.navbar;
     this.setData({  
-      currentTab: e.currentTarget.dataset.idx  
-    })  
+      currentTab: id  
+    })
+    this.getmusiclist(navbar[id]);
   },
-  choosemusic:function(e){
+  getnavbar:function(){
+    var that =this;
+    app.sendRequest({
+        url:'edit_music',
+        method:'POST',
+        success: function(res){
+          var data = res.data;
+          var navbar = [];
+          for(var i=0;i<data.length;i++){
+            var name=data[i].name;
+            navbar.push(name);
+          }
+          that.setData({
+            navbar:navbar
+          });
+          that.getmusiclist(navbar[0]);               
+        },
+        fail: function(res){
+          console.log('getmuscinarbar fail');
+        },
+        complete: function(res){
+        }
+      },'https://chaye.j8j0.com/api/img/')
+  },
+  choosemusic:function(){
     var musicid = e.currentTarget.dataset.idx;
     app.globalData.music = musicid;
-    wx.navigateBack({
-      delta: 1, // 回退前 delta(默认为1) 页面
+    app.sendRequest({
+      url:'edit_music',
+      method:'POST',
+      data:{
+        name:musicid
+      },
       success: function(res){
-        // success
+        var data = res.data;
+        wx.navigateBack({
+          delta: 1, // 回退前 delta(默认为1) 页面
+          success: function(res){
+            // success
+          },
+          fail: function() {
+            // fail
+          },
+          complete: function() {
+            // complete
+          }
+        })     
       },
-      fail: function() {
-        // fail
+      fail: function(res){
+        console.log('setmusci fail');
       },
-      complete: function() {
-        // complete
+      complete: function(res){
       }
-    })
-  }
+    },'https://chaye.j8j0.com/api/img/')
+  },
+  getmusiclist:function(e){
+    var e = this.data.currentTab;
+    var that = this;
+    app.sendRequest({
+      url:'music',
+      method:'POST',
+      data:{
+        name:e
+      },
+      success: function(res){
+        var data = res.data;
+        that.setData({
+          musicitem:{'hot':data}
+        })              
+      },
+      fail: function(res){
+        console.log('getmuscilist fail');
+      },
+      complete: function(res){
+      }
+    },'https://chaye.j8j0.com/api/img/')
+  },
+  onLoad: function () {
+     this.getnavbar();
+    //appInstance.setPageUserInfo();   
+    // appInstance.checkLogin();
+  },
 }) 
