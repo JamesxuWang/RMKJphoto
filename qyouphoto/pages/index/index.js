@@ -11,7 +11,7 @@ Page({
     //music  AND  background AND rabit_box
     rabit:{
         src: 'https://chaye.j8j0.com/data/upload/music/2017-03-10/58c278f835197.mp3',
-      background_img:'background-image: url(../../images/1.2.png)',
+      background_img:'background-image: url(../../images/2.1.png)',
       //rabit_box:'../../images/rabit.png',
       rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
       rabit_box:'../../images/2.3.png'

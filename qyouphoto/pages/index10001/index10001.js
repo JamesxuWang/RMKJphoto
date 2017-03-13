@@ -36,9 +36,9 @@ Page({
         imageUrls = []; 
     var session_key = appInstance.globalData.sessionKey;
     if(photoadd.length!=0){
+      var data = Date.now();
     for (var i = 0; i < photoadd.length; i++) {
       console.log(i)
-      var data = Date.now();
         wx.uploadFile({
           formData: {'session_key':session_key,'add_img_time':data},
           url : 'https://chaye.j8j0.com/api/img/add_img',
