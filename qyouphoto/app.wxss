@@ -1,16 +1,10 @@
 .app{
   width:750rpx;
-  height:1250rpx;
   display:inline-block;
   overflow:hidden;
 }
 .back{
   background-size:750rpx 1250rpx;
-}
-.music_box{
-  position: absolute;
-  top: 30px;
-  right: 30px;
 }
 .animated {
   -webkit-animation-duration: 4s;
@@ -193,7 +187,7 @@
 }
 .fadeOutDown {
     animation-name: fadeOutDown;
-    animation-duration: 10s;
+    animation-duration: 6s;
     animation-iteration-count: infinite;
 }
 @keyframes flip {

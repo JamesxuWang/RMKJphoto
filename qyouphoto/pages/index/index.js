@@ -1,16 +1,16 @@
-//flip/flipInX/flipInY翻转//rotation/zoom//rotateInDownLeft//  slideIn//slide弹性上下（相框）
-//zoom/fadeOutUp/fadeOutDown/fadeOutleansU D上移 下移 (小动画)
-//swing (大动画)
+//flip/flipInX/flipInY翻转//rotation/zoom//rotateInDownLeft//  slideIn//slide弹性上下（相框动画）
+//zoom/fadeOutUp/fadeOutDown/fadeOutleansU D上移 下移 (小动画(闪光，落叶，气球等) )
+//swing (中等动画（兔子，云朵等）)
 //index.js 
 //获取应用实例
-var playon=false
+var playon=false;
 var app = getApp()
 Page({
   data: {
     theme:'',
     //music  AND  background AND rabit_box
     rabit:{
-        src: 'https://chaye.j8j0.com/data/upload/music/2017-03-10/58c278f835197.mp3',
+      src: 'https://chaye.j8j0.com/data/upload/music/2017-03-10/58c278f835197.mp3',
       background_img:'background-image: url(../../images/2.1.png)',
       //rabit_box:'../../images/rabit.png',//花朵
       rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
@@ -33,9 +33,9 @@ Page({
     //白色邮票相框配置
     pbox_style:"border:22rpx solid #fff;border-image:url(../../images/border.png) repeat 13;",
     iframe:{
-      iframe_style1:'rotateInDownLeft',
-      iframe_style2:'flipInY'
+      iframe_style:'zoom',
     },
+    iframe_animatelist:['zoom','flipInX','flipInY','rotation','rotateInDownLeft'],
     //图片
     photo:[],
     photo_right:0
@@ -58,7 +58,6 @@ pausemusi: function() {
   },   //animate("选择器","动画","次数","时延")
 love_animate: function (animation_one,animation_twi, delay_onc,delay_twi) {
      var that = this;
-      // var target = document.querySelectorAll(seletor)
       var timer = null;
       timer = setInterval( function() {
         that.setData({
@@ -76,33 +75,23 @@ love_animate: function (animation_one,animation_twi, delay_onc,delay_twi) {
         },delay_onc)
       }, delay_twi)
   },
-iframe_animate: function (animation_one,animation_twi, delay_onc,delay_twi) {
-     var that = this;
-     var timer = null;
-     var i = 0 ;
-     var photo_length = app.globalData.photo_loca.length;
-      console.log(photo_length);    
-      timer = setInterval( function() {
-        if(i!=photo_length-1){
+iframe_animate: function (delay_time) { 
+    var that = this ;
+     var  animo = this.data.iframe_animatelist;
+     var i = 0;
+     var  timer = setInterval( function() {    
+        var randon = Math.floor(Math.random()*5),
+        photo_length= app.globalData.photo_loca.length;
+       if(i!=photo_length-1){
            i++;
-          }else{i=0}
+          }else{i=0}       
         that.setData({
           iframe:{
-            iframe_style1:animation_one,
-            iframe_style2:'rotation'
+            iframe_style1:animo[randon],
             },
           photo_right:i 
-          })
-        //console.log('iframesetInterval'+i);
-          setTimeout(function(){
-          that.setData({
-          iframe:{
-              iframe_style1:animation_twi,
-              iframe_style2:'rotation'
-            },
-          })
-        },delay_onc)
-      }, delay_twi)
+          })       
+      }, delay_time)
   },
 randomInteger:function (low, high) {
       return low + Math.floor(Math.random() * (high - low));
@@ -144,11 +133,12 @@ navtophoto:function(){
     })
   },
 navtokeep:function(){
-  },
-   
+  },  
 onLoad: function () {
     console.log('onLoad')
     var that = this;
+    this.audioCtx = wx.createAudioContext('myAudio');
+    this.iframe_animate(6000);
     //console.log(that.data.userInfo)
   },
 onReady:function(e){
@@ -162,9 +152,13 @@ initiatlizate:function(){
   var that= this;
   var theme = app.globalData.theme;
   var theme_old = this.data.theme;
-    console.log(theme);
+    console.log(theme_old);
   //通讯获取mude
-    if(theme!=theme_old){
+    if(theme!=theme_old){      
+     that.setData({
+       theme:theme
+     });
+     console.log(that.data.theme);
       app.sendRequest({
           url:'img',         
           method:'POST',
@@ -184,10 +178,10 @@ initiatlizate:function(){
               if(data[i].type==3){
                 var img = data[i].img;
                 if(img.length!=1){
-                components.bling = img[0];
-                components.bling1 = img[1]; 
+                components.bling1 = img[0];
+                components.bling2 = img[1]; 
                 }else{
-                  components.bling = img[0];
+                  components.bling1 = img[0];
                   components.bling2= '../../images/2.1.png'
                 }
               }
@@ -207,13 +201,14 @@ initiatlizate:function(){
           }
         },'https://chaye.j8j0.com/api/img/')  
     }else{
-      return false;
+      console.log('same theme call fail')
     }
 },
 setcomponents:function(e){
+  //这里添加10个模板的配置文件
   console.log(e)
   this.setData({
-      theme:'7',
+      theme:e.theme,
       rabit:{
         src: e.music,
         background_img:e.url,
@@ -225,7 +220,7 @@ setcomponents:function(e){
       bling_box:1,
       bling:{
         love_style:'zoom',
-        lover_src:e.bling
+        lover_src:e.bling1
       },
       bling2:{
         love_style:'zoom',
@@ -236,8 +231,8 @@ setcomponents:function(e){
       //白色邮票相框配置
       pbox_style:e.pbox_style,
       iframe:{
-        iframe_style1:'rotateInDownLeft',
-        iframe_style2:'flipInY'
+        iframe_style1:'flipInY',
+        iframe_style2:'rotation'
       },
       //图片
       photo:app.globalData.photo_loca,
@@ -246,10 +241,6 @@ setcomponents:function(e){
 },
 onShow:function(e){
     this.initiatlizate();    
-    var rotation = this.data.iframe.iframe_style2;
-    var zoom = this.data.iframe.iframe_style1;
-    this.audioCtx = wx.createAudioContext('myAudio');
-    this.iframe_animate(rotation,zoom,6000, 12000);
     this.pausemusi();
   }
 })

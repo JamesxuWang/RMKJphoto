@@ -1,11 +1,15 @@
 <view class="app">
     <template name="zcPicture">
-        <view class="element picture"  data-event-params="{{data.eventParams}}" catchtap="{{data.eventHandler}}">
+        <view class="element picture">
         <!--<image src="{{data.content}}"></image>-->
-        <view class="Textimg" style='background-image:url({{data.content}})'>
-            <text class ="Textimg_t">{{data.name}}</text>
-        </view>
-        <text class ="Textt">{{data.company_name}}</text>
+            <view class="Textimg" style='background-image:url({{data.content}})'  data-event-params="{{data.eventParams}}" catchtap="{{data.eventHandler}}">
+                <text class ="Textimg_t">{{data.found_time}}</text>
+                <text class ="Textimg_tt" >查看|分享</text>
+            </view>
+            <view class='textimg_bottom'>
+                <text>{{data.theme_detail}}</text>
+                <button bindtap="nav_index">编辑</button>
+            </view>
         </view>
     </template>
     <template name="zcFreeVessel4">

@@ -1,10 +1,10 @@
 <!--index.wxml-->
 <view class ="app back" style="{{rabit.background_img}}">
-<view class = "music_box" bindtap="pausemusi">
+  <view class = "music_box" bindtap="pausemusi">
     <image src="../../images/musi.png" class="musi rotation" style="{{rotation}}"></image>
   </view>
   <view>
-  <audio src="{{rabit.src}}" id="myAudio" loop></audio>  
+    <audio src="{{rabit.src}}" id="myAudio" loop></audio>  
   </view>
   <view style="{{overflow}}">
     <view class = "photo_box {{iframe.iframe_style1}}" style="{{pbox_style}}">
@@ -14,23 +14,23 @@
   <view class = "rabit_box" style="{{rabit.rabit_position[0]}}">
     <image src="{{rabit.rabit_box}}" class="swing1" style="{{rabit.rabit_position[1]}}"></image>
   </view>
-<template name="bling">
-  <view class="bling_do" style="{{style}}" data-event-params="{{data.eventParams}}" catchtap="{{data.eventHandler}}">
-  <image src="{{data.lover_src}}" class="lover {{data.love_style}}"></image>
-  </view>
-</template>
+  <template name="bling">
+    <view class="bling_do" style="{{style}}" data-event-params="{{data.eventParams}}" catchtap="{{data.eventHandler}}">
+    <image src="{{data.lover_src}}" class="lover {{data.love_style}}"></image>
+    </view>
+  </template>
 <view class="ele-container">
 <block wx:if='{{bling_box==1}}'>
  <view wx:for="{{[1,2,3,4]}}" wx:for-item="i">
   <view wx:for="{{[1,2,3,4]}}" wx:for-item="j">
-    <view style="top: {{ i + (i*120 - j*30)}}px;left: {{i*13*j}}px;position:absolute">
+    <view style="top: {{(i*i*30 - j*j*6)}}px;left: {{i*13*j}}px;position:absolute">
   <template is="bling" data="{{data:bling, userInfo: userInfo}}"></template>
     </view>
    </view>
  </view>
  <view wx:for="{{[1,2,3,4]}}" wx:for-item="i">
   <view wx:for="{{[1,2,3,4]}}" wx:for-item="j">
-    <view style="bottom: {{ i + (i*150 - j*20)}}px;right: {{i*15*j}}px;position:absolute">
+    <view style="bottom: {{(i*i*30 - j*j*5)}}px;right: {{i*15*j}}px;position:absolute">
   <template is="bling" data="{{data:bling, userInfo: userInfo}}"></template>
     </view>
    </view>

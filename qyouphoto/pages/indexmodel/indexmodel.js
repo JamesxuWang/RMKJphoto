@@ -2,18 +2,8 @@ var appInstance = getApp();
 
 var pageData    = {
   data: {
-    "free_vessel4":{"content":[{"content":"http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg",'name':'exlm',"eventParams":"{\"inner_page_link\":\"\\\/pages\\\/page10002\\\/page10002\",\"is_redirect\":0}","eventHandler":"tapInnerLinkHandler"},{"content":"http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg",'name':'exlm',"eventParams":"{\"inner_page_link\":\"\\\/pages\\\/page10002\\\/page10002\",\"is_redirect\":0}","eventHandler":"tapInnerLinkHandler"},],"customFeature":[],"animations":[],"page_form":"","compId":"free_vessel4"}
+    "free_vessel4":{"content":[{"content":"http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg",'name':'exlm',"eventParams":"8","eventHandler":"tapInnerLinkHandler"},{"content":"http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg",'name':'exlm',"eventParams":"7","eventHandler":"tapInnerLinkHandler"},]}
   },
-  app_title: '人马科技',
-  app_description: '科技改变一切',
-  page_router: 'page10010',
-  page_router1: '10010',
-  page_form: 'none',
-  list_compids_params: [],
-  goods_compids_params: [],
-  relobj_auto: [],
-  bbsCompIds: [],
-  dynamicVesselComps: [],
   onLoad: function (e) {
     var that =this;
     appInstance.sendRequest({
@@ -47,20 +37,12 @@ var pageData    = {
     //appInstance.setPageUserInfo();   
     // appInstance.checkLogin();
      },
-  onShareAppMessage: function(){
-    var pageRouter = this.page_router;
-    var pageRouter1 = this.page_router1;
-    return {
-      title: this.app_title || '产品设计',
-      desc: this.app_description || '',
-      path: '/pages/'+pageRouter+'/'+pageRouter1
-    }
-  },
   onShow: function(){ 
   },
   tapInnerLinkHandler:function(e){
     console.log(e);
     var tapeven = e.currentTarget.dataset.eventParams;
+     appInstance.globalData.theme=tapeven;
     console.log(tapeven);
     if(tapeven!=null){
       appInstance.sendRequest({
@@ -75,7 +57,7 @@ var pageData    = {
               wx.navigateBack({
                   delta: 1, // 回退前 delta(默认为1) 页面
                   success: function(res){
-                    appInstance.globalData.theme=tapeven;
+                    //appInstance.globalData.theme=tapeven;
                   },
                   fail: function() {
                     // fail

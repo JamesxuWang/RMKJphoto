@@ -1,10 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-    var userInfo;
-    if(userInfo = wx.getStorageSync('userInfo')){
-      this.globalData.userInfo = userInfo;
-    }
+    this.checkLogin();
   },
   onShow: function(){
     console.log('onShow');
@@ -163,8 +160,8 @@ App({
         code:code
       },
       success: function(res){
-        if(res.data.is_login == 0) {
-          that.globalData.notBindXcxAppId = true;
+        if(res.data.is_login == 1) {
+          //that.getPhoto();
         }
         that.setSessionKey(res.data.session_key);
        that.requestUserInfo(res.data.is_login);
@@ -206,14 +203,13 @@ App({
         url: 'getUserinfo',
         success: function(res){
           if(res.code == 400){
-            //console.log(res.code)
+            console.log(res.code)
             // 如果没有登录
             that.login();
             //return;
           } else if(res.code == 200) {
              that.setUserInfoStorage(res.data);
-             that.getPhoto();
-              console.log(res.code);
+             //that.getPhoto();
           }      
         },
         fail: function(res){
@@ -222,48 +218,32 @@ App({
       });
     }
   },
-  getPhoto:function(){
-    var that = this;
-    this.sendRequest({
-      method:'POST',
-      url:'photo',
-      data:{
-        add_img_time:'1489314597905'
-      },
-      success:function(res){
-        console.log(res)
-      },
-      fail:function(res){
-        console.log('get photo fail')
-      }
-    },'https://chaye.j8j0.com/api/img/')
-  },
-  // 向wx服务器check
-  sendSessionKeywx: function(){
-    var that = this;
-    try {
-      var key = wx.getStorageSync('session_key');
-    } catch(e) {
+  //  向wx服务器check
+  // sendSessionKeywx: function(){
+  //   var that = this;
+  //   try {
+  //     var key = wx.getStorageSync('session_key');
+  //   } catch(e) {
 
-    }
+  //   }
 
-    if (!key) {
-      console.log("check login key=====");
-      this.login();
+  //   if (!key) {
+  //     console.log("check login key=====");
+  //     this.login();
 
-    } else {
-      this.globalData.sessionKey = key;
-      wx.checkSession({
-        success: function(res){   
-         console.log('checkLogin success');       
-        },
-        fail: function(res){
-          that.login();
-          console.log('checkLogin fail');
-        }
-      });
-    }
-  },
+  //   } else {
+  //     this.globalData.sessionKey = key;
+  //     wx.checkSession({
+  //       success: function(res){   
+  //        console.log('checkLogin success');       
+  //       },
+  //       fail: function(res){
+  //         that.login();
+  //         console.log('checkLogin fail');
+  //       }
+  //     });
+  //   }
+  // },
   requestUserInfo: function(is_login){
     if(is_login==1){
       this.requestUserXcxInfo();
