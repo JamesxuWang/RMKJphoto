@@ -211,7 +211,8 @@ App({
             that.login();
             //return;
           } else if(res.code == 200) {
-             that.requestUserInfo(1);
+             that.setUserInfoStorage(res.data);
+             that.getPhoto();
               console.log(res.code);
           }      
         },
@@ -220,6 +221,22 @@ App({
         }
       });
     }
+  },
+  getPhoto:function(){
+    var that = this;
+    this.sendRequest({
+      method:'POST',
+      url:'photo',
+      data:{
+        add_img_time:'1489314597905'
+      },
+      success:function(res){
+        console.log(res)
+      },
+      fail:function(res){
+        console.log('get photo fail')
+      }
+    },'https://chaye.j8j0.com/api/img/')
   },
   // 向wx服务器check
   sendSessionKeywx: function(){

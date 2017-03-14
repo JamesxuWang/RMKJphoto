@@ -36,6 +36,7 @@ Page({
         imageUrls = []; 
     var session_key = appInstance.globalData.sessionKey;
     if(photoadd.length!=0){
+      var data = Date.now();
     for (var i = 0; i < photoadd.length; i++) {
       console.log(i)
         wx.uploadFile({
