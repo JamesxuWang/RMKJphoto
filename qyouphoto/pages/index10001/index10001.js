@@ -13,7 +13,8 @@ Page({
     var that = this;
     wx.chooseImage({
         count: 9,
-        sizeType: ['original','compressed'], 
+        sizeType: ['compressed'], 
+        //sizeType: ['original','compressed'],
         sourceType: ['album'], 
         success: function (res) {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
@@ -36,26 +37,26 @@ Page({
         imageUrls = []; 
     var session_key = appInstance.globalData.sessionKey;
     if(photoadd.length!=0){
-      var data = Date.now();
-    for (var i = 0; i < photoadd.length; i++) {
-      console.log(i)
-        wx.uploadFile({
-          formData: {'session_key':session_key,t_id:1},
-          url : 'https://chaye.j8j0.com/api/img/add_img',
-          filePath: photoadd[i],
-          name: 'file',
-          success: function(res){
-            var data1 = JSON.parse(res.data);
-            var data = data1.data;
-            console.log(data);
-            imageUrls.push(data.portrait);
-           console.log(imageUrls);    
-          },
-          fail: function(res){
-            console.log(res.errMsg);
-          }
-        })
-      }
+      var date = Date.now();
+      for (var i = 0; i < photoadd.length; i++) {
+        console.log(i)
+          wx.uploadFile({
+            formData: {'session_key':session_key,add_img_time:date},
+            url : 'https://chaye.j8j0.com/api/img/add_img',
+            filePath: photoadd[i],
+            name: 'file',
+            success: function(res){
+              var data1 = JSON.parse(res.data);
+              var data = data1.data;
+              console.log(data);
+              imageUrls.push(data.portrait);
+            console.log(imageUrls);    
+            },
+            fail: function(res){
+              console.log(res.errMsg);
+            }
+          })
+        }
     appInstance.globalData.photo_line = imageUrls;
     console.log(appInstance.globalData.photo_line)
      wx.navigateTo({

@@ -6,6 +6,8 @@
     "pages/indexmodel/indexmodel",
     "pages/indexmusic/indexmusic",
     "pages/indexadd/indexadd",
+    "pages/indexphoto/indexphoto",
+    "pages/indexshare/indexshare",
     "pages/logs/logs"  
   ],
   "window":{
@@ -13,6 +15,5 @@
     "navigationBarBackgroundColor": "#f8f8f8",
     "navigationBarTitleText": "photo",
     "navigationBarTextStyle":"black"
-  },
-  "debug":true
+  }
 }

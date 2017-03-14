@@ -7,7 +7,7 @@
     </view>  
     <view class="managephoto">
         <block wx:if="{{real_value}}">
-        <button type="default">相册管理</button>
+        <button type="default" bindtap="getphoto">相册管理</button>
         </block>
     </view>
 </view>

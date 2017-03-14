@@ -12,7 +12,7 @@ Page({
     rabit:{
         src: 'https://chaye.j8j0.com/data/upload/music/2017-03-10/58c278f835197.mp3',
       background_img:'background-image: url(../../images/2.1.png)',
-      //rabit_box:'../../images/rabit.png',
+      //rabit_box:'../../images/rabit.png',//花朵
       rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
       rabit_box:'../../images/2.3.png'
        },
@@ -29,9 +29,9 @@ Page({
       lover_src:'../../images/2.1.png'
     },
     //如果是slide效果加'overflow: hidden;'
-    overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
+    overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:150rpx;z-index:100',
     //白色邮票相框配置
-    pbox_style:"border:13px solid #fff;border-image:url(../../images/border.png) repeat 13;",
+    pbox_style:"border:22rpx solid #fff;border-image:url(../../images/border.png) repeat 13;",
     iframe:{
       iframe_style1:'rotateInDownLeft',
       iframe_style2:'flipInY'
@@ -176,9 +176,10 @@ initiatlizate:function(){
               if(data[i].type==1){
                 components.url = 'background-image: url('+data[i].img+')'; 
                 components.music = data[i].music;
+                components.theme = data[i].t_id;
               }
               if(data[i].type==2){
-                components.pbox_style = 'border:13px solid #fff;border-image:url('+data[i].img+') repeat 13;'; 
+                components.pbox_style = 'border:22rpx solid #fff;border-image:url('+data[i].img+') repeat 13;'; 
               }
               if(data[i].type==3){
                 var img = data[i].img;
@@ -217,7 +218,7 @@ setcomponents:function(e){
         src: e.music,
         background_img:e.url,
         //rabit_box:'../../images/rabit.png',
-        rabit_position:['position: absolute;bottom: 338rpx;right: 100rpx;','width: 104px;height: 158px;'],
+        rabit_position:['position: absolute;bottom: 0rpx;left: 40rpx;','width: 300rpx;height: 580rpx;'],
         rabit_box:e.rabit_box
         },
       rotation:'animation-play-state: running',
@@ -231,7 +232,7 @@ setcomponents:function(e){
         lover_src:e.bling2
       },
       //如果是slide效果加'overflow: hidden;'
-      overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:178rpx;z-index:100',
+      overflow:'width: 488rpx;height: 867rpx;top:150rpx;position:absolute;right:150rpx;z-index:100',
       //白色邮票相框配置
       pbox_style:e.pbox_style,
       iframe:{

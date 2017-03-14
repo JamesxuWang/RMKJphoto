@@ -19,6 +19,21 @@ Page({
       }
     })
   },
+getphoto:function(){
+    wx.navigateTo({
+      url: '../indexphoto/indexphoto',
+      success: function(res){
+        console.log(res);
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
   onLoad:function(options){
      appInstance.checkLogin();
      //appInstance.setPageUserInfo();     
